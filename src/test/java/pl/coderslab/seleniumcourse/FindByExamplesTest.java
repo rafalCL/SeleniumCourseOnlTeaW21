@@ -22,4 +22,14 @@ public class FindByExamplesTest {
 
         //driver.quit();
     }
+
+    @Test
+    public void shouldFindElementsByName() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://hotel-testlab.coderslab.pl/en/");
+        WebElement hotelLocationInput = driver.findElement(By.name("hotel_location"));
+// todo finish
+        //driver.quit();
+    }
 }
