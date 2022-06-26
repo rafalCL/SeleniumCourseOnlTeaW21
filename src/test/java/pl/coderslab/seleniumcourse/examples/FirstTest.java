@@ -1,4 +1,4 @@
-package pl.coderslab.seleniumcourse;
+package pl.coderslab.seleniumcourse.examples;
 
 import org.junit.jupiter.api.Test;
 
