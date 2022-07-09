@@ -1,5 +1,6 @@
 package pl.coderslab.seleniumcourse.pageobject;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,15 +12,20 @@ import java.time.Duration;
 import static pl.coderslab.seleniumcourse.Tools.*;
 
 public class RegisterUserPageObjectedTest {
+    private WebDriver driver;
+    MainHotelTestlabPage mainPage;
+
+    @BeforeEach
+    public void beforeEach() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+        this.driver = new ChromeDriver();
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
+        this.mainPage = new MainHotelTestlabPage(driver);
+    }
+
     @Test
     public void shouldFillRegisterUserForm() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
-
         driver.get("https://hotel-testlab.coderslab.pl/en/");
-
-        MainHotelTestlabPage mainPage = new MainHotelTestlabPage(driver);
 
         mainPage.clickSignIn();
 
