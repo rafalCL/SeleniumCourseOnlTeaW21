@@ -28,7 +28,7 @@ public class SearchHotelTest {
     public void verifyHotelList(){
         driver.get("https://hotel-testlab.coderslab.pl/en/14-the-hotel-prime?date_from=2022-07-09&date_to=2022-07-10");
         assertTrue(searchPage.isThereAnyHotelPresentInSearchResults());
-        assertTrue(searchPage.isThereHotelWithNamePresentInSearchResults("luxury Rooms"));
+        assertTrue(searchPage.isThereHotelWithNamePresentInHotelResults("luxury Rooms"));
     }
 
 }
