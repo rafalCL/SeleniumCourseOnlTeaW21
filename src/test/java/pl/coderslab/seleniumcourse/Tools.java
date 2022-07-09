@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class Tools {
     public static void sleep(long sleepTimeInMs) {
         try {
-            Thread.sleep(sleepTimeInMs);
+            Thread.currentThread().sleep(sleepTimeInMs);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

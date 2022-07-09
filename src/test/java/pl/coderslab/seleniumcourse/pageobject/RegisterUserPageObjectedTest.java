@@ -43,6 +43,7 @@ public class RegisterUserPageObjectedTest {
                 .setLastName("makota")
                 .setPassword("supertajnehaslo");
         assertTrue(createAccountPage.areMandatoryInputsInteractable(), "element not interactable!");
+        sleep(800);
         assertEquals(email, createAccountPage.getUserEmail());
         createAccountPage.attemptAccountCreationForUserDetails(userDetails);
         // then
