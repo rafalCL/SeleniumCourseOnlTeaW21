@@ -10,6 +10,7 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pl.coderslab.seleniumcourse.Tools.generateRandomEmail;
+import static pl.coderslab.seleniumcourse.Tools.sleep;
 
 public class RegisterUserPageObjectedTest {
     private WebDriver driver;
@@ -30,7 +31,7 @@ public class RegisterUserPageObjectedTest {
     }
 
     @Test
-    public void shouldFillRegisterUserForm() {
+    public void shouldCreateAnAccount() {
         // given
         driver.get("https://hotel-testlab.coderslab.pl/en/");
         // when
@@ -41,20 +42,11 @@ public class RegisterUserPageObjectedTest {
                 .setFirstName("ala")
                 .setLastName("makota")
                 .setPassword("supertajnehaslo");
-//        String actual = createAccountPage.getUserEmail();
-//        assertEquals(email, actual);
+        assertTrue(createAccountPage.areMandatoryInputsInteractable(), "element not interactable!");
+        assertEquals(email, createAccountPage.getUserEmail());
         createAccountPage.attemptAccountCreationForUserDetails(userDetails);
         // then
         assertTrue(myAccountPage.isAccountCreationSuccessful());
-
-//        assertDisplayedAndEnabled(emailInput);
-//        assertDisplayedAndEnabled(createAnAccountButton);
-
-//        assertDisplayedAndEnabled(customerFirstnameInput);
-//        assertDisplayedAndEnabled(customerLastnameInput);
-//        assertDisplayedAndEnabled(customerEmailInput);
-//        assertDisplayedAndEnabled(passwordInput);
-//        assertDisplayedAndEnabled(submitButton);
         //driver.quit();
     }
 }
