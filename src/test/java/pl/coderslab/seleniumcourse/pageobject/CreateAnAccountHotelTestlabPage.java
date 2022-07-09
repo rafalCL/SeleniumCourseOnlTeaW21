@@ -25,4 +25,9 @@ public class CreateAnAccountHotelTestlabPage {
         WebElement submitButton = driver.findElement(By.id("submitAccount"));
         submitButton.click();
     }
+
+    public String getUserEmail() {
+        WebElement emailInput = driver.findElement(By.id("email"));
+        return emailInput.getAttribute("value");
+    }
 }

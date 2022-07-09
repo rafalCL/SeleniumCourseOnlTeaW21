@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pl.coderslab.seleniumcourse.Tools.generateRandomEmail;
 
@@ -34,11 +35,14 @@ public class RegisterUserPageObjectedTest {
         driver.get("https://hotel-testlab.coderslab.pl/en/");
         // when
         mainPage.clickSignIn();
-        loginPage.attemptAccountCreationForEmail(generateRandomEmail());
+        String email = generateRandomEmail();
+        loginPage.attemptAccountCreationForEmail(email);
         UserDetailsDto userDetails = new UserDetailsDto()
                 .setFirstName("ala")
                 .setLastName("makota")
                 .setPassword("supertajnehaslo");
+//        String actual = createAccountPage.getUserEmail();
+//        assertEquals(email, actual);
         createAccountPage.attemptAccountCreationForUserDetails(userDetails);
         // then
         assertTrue(myAccountPage.isAccountCreationSuccessful());
