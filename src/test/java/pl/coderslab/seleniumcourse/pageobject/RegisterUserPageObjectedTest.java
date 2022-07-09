@@ -2,19 +2,18 @@ package pl.coderslab.seleniumcourse.pageobject;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-import static pl.coderslab.seleniumcourse.Tools.*;
+import static pl.coderslab.seleniumcourse.Tools.generateRandomEmail;
 
 public class RegisterUserPageObjectedTest {
     private WebDriver driver;
     private MainHotelTestlabPage mainPage;
     private LoginHotelTestlabPage loginPage;
+    private CreateAnAccountHotelTestlabPage createAccountPage;
 
     @BeforeEach
     public void beforeEach() {
@@ -23,6 +22,7 @@ public class RegisterUserPageObjectedTest {
         this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
         this.mainPage = new MainHotelTestlabPage(driver);
         this.loginPage = new LoginHotelTestlabPage(driver);
+        this.createAccountPage = new CreateAnAccountHotelTestlabPage(driver);
     }
 
     @Test
@@ -31,24 +31,20 @@ public class RegisterUserPageObjectedTest {
 
         mainPage.clickSignIn();
         loginPage.attemptAccountCreationForEmail(generateRandomEmail());
+        UserDetailsDto userDetails = new UserDetailsDto()
+                .setFirstName("ala")
+                .setLastName("makota")
+                .setPassword("supertajnehaslo");
+        createAccountPage.attemptAccountCreationForUserDetails(userDetails);
+
 //        assertDisplayedAndEnabled(emailInput);
 //        assertDisplayedAndEnabled(createAnAccountButton);
 
-        WebElement customerFirstnameInput = driver.findElement(By.id("customer_firstname"));
-        assertDisplayedAndEnabled(customerFirstnameInput);
-        fillInput(customerFirstnameInput, "ala");
-        WebElement customerLastnameInput = driver.findElement(By.id("customer_lastname"));
-        assertDisplayedAndEnabled(customerLastnameInput);
-        fillInput(customerLastnameInput, "makota");
-        WebElement customerEmailInput = driver.findElement(By.id("email"));
-        assertDisplayedAndEnabled(customerEmailInput);
-        WebElement passwordInput = driver.findElement(By.id("passwd"));
-        assertDisplayedAndEnabled(passwordInput);
-        fillInput(passwordInput, "supertajnehaslo");
-
-        WebElement submitButton = driver.findElement(By.id("submitAccount"));
-        assertDisplayedAndEnabled(submitButton);
-        submitButton.click();
+//        assertDisplayedAndEnabled(customerFirstnameInput);
+//        assertDisplayedAndEnabled(customerLastnameInput);
+//        assertDisplayedAndEnabled(customerEmailInput);
+//        assertDisplayedAndEnabled(passwordInput);
+//        assertDisplayedAndEnabled(submitButton);
         //driver.quit();
     }
 }
