@@ -13,7 +13,8 @@ import static pl.coderslab.seleniumcourse.Tools.*;
 
 public class RegisterUserPageObjectedTest {
     private WebDriver driver;
-    MainHotelTestlabPage mainPage;
+    private MainHotelTestlabPage mainPage;
+    private LoginHotelTestlabPage loginPage;
 
     @BeforeEach
     public void beforeEach() {
@@ -21,6 +22,7 @@ public class RegisterUserPageObjectedTest {
         this.driver = new ChromeDriver();
         this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
         this.mainPage = new MainHotelTestlabPage(driver);
+        this.loginPage = new LoginHotelTestlabPage(driver);
     }
 
     @Test
@@ -28,13 +30,9 @@ public class RegisterUserPageObjectedTest {
         driver.get("https://hotel-testlab.coderslab.pl/en/");
 
         mainPage.clickSignIn();
-
-        WebElement emailInput = driver.findElement(By.cssSelector("#email_create"));
-        assertDisplayedAndEnabled(emailInput);
-        fillInput(emailInput, generateRandomEmail());
-        WebElement createAnAccountButton = driver.findElement(By.cssSelector("#SubmitCreate"));
-        assertDisplayedAndEnabled(createAnAccountButton);
-        createAnAccountButton.click();
+        loginPage.attemptAccountCreationForEmail(generateRandomEmail());
+//        assertDisplayedAndEnabled(emailInput);
+//        assertDisplayedAndEnabled(createAnAccountButton);
 
         WebElement customerFirstnameInput = driver.findElement(By.id("customer_firstname"));
         assertDisplayedAndEnabled(customerFirstnameInput);
