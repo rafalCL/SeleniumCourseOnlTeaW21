@@ -9,26 +9,34 @@ import static pl.coderslab.seleniumcourse.Tools.fillInput;
 public class CreateAnAccountHotelTestlabPage {
     private WebDriver driver;
 
+    private By customerFirstnameLocator = By.id("customer_firstname");
+
+    private By customerLastNameLocator = By.id("customer_lastname");
+
+    private By customerPasswordLocator = By.id("passwd");
+
+    private By submitButtonLocator = By.id("submitAccount");
+
     public CreateAnAccountHotelTestlabPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void attemptAccountCreationForUserDetails(UserDetailsDto userDetails) {
-        WebElement customerFirstnameInput = driver.findElement(By.id("customer_firstname"));
+        WebElement customerFirstnameInput = driver.findElement(customerFirstnameLocator);
         fillInput(customerFirstnameInput, userDetails.getFirstName());
-        WebElement customerLastnameInput = driver.findElement(By.id("customer_lastname"));
+        WebElement customerLastnameInput = driver.findElement(customerLastNameLocator);
         fillInput(customerLastnameInput, userDetails.getLastName());
-        WebElement passwordInput = driver.findElement(By.id("passwd"));
+        WebElement passwordInput = driver.findElement(customerPasswordLocator);
         fillInput(passwordInput, userDetails.getPassword());
 
-        WebElement submitButton = driver.findElement(By.id("submitAccount"));
+        WebElement submitButton = driver.findElement(submitButtonLocator);
         submitButton.click();
     }
 
     public boolean areMandatoryInputsInteractable() {
-        WebElement customerFirstnameInput = driver.findElement(By.id("customer_firstname"));
-        WebElement customerLastnameInput = driver.findElement(By.id("customer_lastname"));
-        WebElement passwordInput = driver.findElement(By.id("passwd"));
+        WebElement customerFirstnameInput = driver.findElement(customerFirstnameLocator);
+        WebElement customerLastnameInput = driver.findElement(customerLastNameLocator);
+        WebElement passwordInput = driver.findElement(customerPasswordLocator);
         boolean isFirstNameInputInteractable = customerFirstnameInput.isDisplayed() && customerFirstnameInput.isEnabled();
         boolean isLastNameInputInteractable = customerLastnameInput.isDisplayed() && customerLastnameInput.isEnabled();
         boolean isPasswordInputInteractable = passwordInput.isDisplayed() && passwordInput.isEnabled();
