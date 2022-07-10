@@ -16,4 +16,14 @@ public class MainDdgPage {
         searchInput.sendKeys(phraseToSearch);
         searchInput.submit();
     }
+
+    public void enterSearchPhraseToInputBox(String phraseToSearch) {
+        WebElement searchInput = driver.findElement(By.name("q"));
+        searchInput.sendKeys(phraseToSearch);
+    }
+
+    public void clickSearchButton() {
+        WebElement searchButton = driver.findElement(By.id("search_button_homepage"));
+        searchButton.click();
+    }
 }
