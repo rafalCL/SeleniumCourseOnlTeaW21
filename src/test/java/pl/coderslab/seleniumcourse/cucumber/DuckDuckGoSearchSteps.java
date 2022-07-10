@@ -41,7 +41,7 @@ public class DuckDuckGoSearchSteps {
         for (int i = 0; i < results.size() && i < count; i++) {
             WebElement currentResultElement = results.get(i);
             WebElement currentResultHeader = currentResultElement.findElement(By.cssSelector("h2"));
-            if (!currentResultHeader.getText().contains(expectedPhrase)) {
+            if (!currentResultHeader.getText().toLowerCase().contains(expectedPhrase.toLowerCase())) {
                 fail(String.format("Phrase %s NOT found in search result: %s",
                         expectedPhrase, currentResultHeader.getText()));
             }
