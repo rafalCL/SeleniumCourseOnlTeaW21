@@ -2,6 +2,6 @@ Feature: Text search with DuckDuckGo
 
   Scenario: Successful search
   Given Browser with open page at address https://duckduckgo.com
-  When Entered "Henryk Sienkiewicz" on the search input box
+  When Entered Henryk Sienkiewicz in the search input box
   And Search button (magnifying glass) clicked
-  Then First 3 search results contain phrase: "Henryk Sienkiewicz"
+  Then First 3 search results contain phrase: Henryk Sienkiewicz
