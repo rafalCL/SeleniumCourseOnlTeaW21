@@ -1,29 +1,30 @@
 package pl.coderslab.seleniumcourse.pageobject.ddg;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class MainDdgPage {
-    private WebDriver driver;
+    @FindBy(name = "q")
+    private WebElement searchInput;
+    @FindBy(id = "search_button_homepage")
+    private WebElement searchButton;
 
     public MainDdgPage(WebDriver driver) {
-        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void searchPhrase(String phraseToSearch) {
-        WebElement searchInput = driver.findElement(By.name("q"));
         searchInput.sendKeys(phraseToSearch);
         searchInput.submit();
     }
 
     public void enterSearchPhraseToInputBox(String phraseToSearch) {
-        WebElement searchInput = driver.findElement(By.name("q"));
         searchInput.sendKeys(phraseToSearch);
     }
 
     public void clickSearchButton() {
-        WebElement searchButton = driver.findElement(By.id("search_button_homepage"));
         searchButton.click();
     }
 }

@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -22,6 +23,7 @@ public class DuckDuckGoSearchPageObjectSteps {
     public void browserNavigate(String url) {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
         this.driver = new ChromeDriver();
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
         this.driver.get(url);
         this.mainDdgPage = new MainDdgPage(driver);
         this.resultsDdgPage = new ResultsDdgPage(driver);
