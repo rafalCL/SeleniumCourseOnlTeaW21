@@ -5,6 +5,8 @@ Feature: Text search with DuckDuckGo
     When 2Entered <searchPhrase> in the search input box
     And 2Search button (magnifying glass) clicked
     Then 2First <meaningfulSearchResultCount> search results contain phrase: <searchPhrase>
+    And Save screenshot
+    And Close browser
 Examples:
     |searchPhrase          |meaningfulSearchResultCount|
     |Henryk Sienkiewicz    |5                          |
